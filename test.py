@@ -23,8 +23,7 @@ while True:
 
     if option == 1:
         name = str(input('Informe o nome da música: '))
-        music.load(name)
-        music.play()
+        music.exists(name)
     elif option == 2:
         music.stop()
     elif option == 3:

@@ -1,3 +1,4 @@
+import os
 from pygame import mixer
 
 # Music Player
@@ -49,3 +50,12 @@ class Music(object):
     @classmethod
     def get_volume(cls):
         print('Volume atual: {:.2f}'.format(mixer.music.get_volume()))
+
+    # verifica se a música existe no diretório /musics/
+    @classmethod
+    def exists(cls, name):
+        if os.path.exists('musics/{}.mp3'.format(name)):
+            Music.load(name)
+            Music.play()
+        else:
+            print('Música não encontrada!')
