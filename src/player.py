@@ -12,10 +12,10 @@ class Music(object):
 
     # carregar música selecionada
     @classmethod
-    def load(cls, file):
-        mixer.music.load('musics/{}.mp3'.format(file).lower().replace(' ', '_'))
+    def load(cls, path, file):
+        mixer.music.load('{}/{}.mp3'.format(path, file))
 
-    # iniciar múscia
+    # iniciar música
     @classmethod
     def play(cls):
         mixer.music.play()
@@ -30,10 +30,9 @@ class Music(object):
     def resume(cls):
         mixer.music.unpause()
 
-    # pausar música
+    # reiniciar música
     @classmethod
     def rewind(cls):
-        Music.play()
         mixer.music.rewind()
 
     # parar música
@@ -53,9 +52,12 @@ class Music(object):
 
     # verifica se a música existe no diretório /musics/
     @classmethod
-    def exists(cls, name):
-        if os.path.exists('musics/{}.mp3'.format(name)):
-            Music.load(name)
-            Music.play()
+    def is_valid(cls, dir_name, file_name):
+        if os.path.isdir(dir_name):
+            if os.path.exists('{}/{}.mp3'.format(dir_name, file_name)):
+                Music.load(dir_name, file_name)
+                Music.play()
+            else:
+                print('Música não encontrada!')
         else:
-            print('Música não encontrada!')
+            print('o diretório \033[33m{}\033[m não existe!'.format(dir_name))

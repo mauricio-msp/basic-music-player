@@ -7,9 +7,11 @@ parar, alterar volume, mostrar volume e reinicia-lá.
 """
 from src.player import Music
 
+path = str(input('Informe o nome do diretório criado: '))
+
 music = Music()
 
-print('1 - Carregar/Iniciar música')
+print('\n1 - Carregar/Iniciar música')
 print('2 - Parar música')
 print('3 - Pausar música')
 print('4 - Retomar música')
@@ -23,7 +25,7 @@ while True:
 
     if option == 1:
         name = str(input('Informe o nome da música: '))
-        music.exists(name)
+        music.is_valid(path, name)
     elif option == 2:
         music.stop()
     elif option == 3:
